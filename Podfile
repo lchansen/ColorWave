@@ -7,5 +7,5 @@ target 'ColorWave' do
 
   # Pods for ColorWave
   pod 'Charts'
-  pod 'Material', '~> 2.0'
+  pod 'Material'
 end
