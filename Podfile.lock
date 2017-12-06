@@ -1,0 +1,24 @@
+PODS:
+  - Charts (3.0.4):
+    - Charts/Core (= 3.0.4)
+  - Charts/Core (3.0.4)
+  - Material (2.11.4):
+    - Material/Core (= 2.11.4)
+  - Material/Core (2.11.4):
+    - Motion (~> 1.2.0)
+  - Motion (1.2.2):
+    - Motion/Core (= 1.2.2)
+  - Motion/Core (1.2.2)
+
+DEPENDENCIES:
+  - Charts
+  - Material (~> 2.0)
+
+SPEC CHECKSUMS:
+  Charts: 0705898046257443f0afbbc3179f4b67507b6e48
+  Material: a1e1ec7789ffab391f8179047926f1736865eb7e
+  Motion: 532cc6bb5d6777c58a20f71c26c5825173017f60
+
+PODFILE CHECKSUM: 2217d1234be9e182d639cf2f15b5791b1489a333
+
+COCOAPODS: 1.3.1

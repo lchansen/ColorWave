@@ -12,9 +12,13 @@
 		A3C8522B1FD893E00000324E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3C852291FD893E00000324E /* Main.storyboard */; };
 		A3C8522D1FD893E00000324E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3C8522C1FD893E00000324E /* Assets.xcassets */; };
 		A3C852301FD893E00000324E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3C8522E1FD893E00000324E /* LaunchScreen.storyboard */; };
+		ACB9896F0F25453C1B01E563 /* Pods_ColorWave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561AA332425625867122B248 /* Pods_ColorWave.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		47F3F3D957B17B1B0FA5625D /* Pods-ColorWave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorWave.release.xcconfig"; path = "Pods/Target Support Files/Pods-ColorWave/Pods-ColorWave.release.xcconfig"; sourceTree = "<group>"; };
+		561AA332425625867122B248 /* Pods_ColorWave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ColorWave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CEB73DF1A16C4877190390F /* Pods-ColorWave.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorWave.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ColorWave/Pods-ColorWave.debug.xcconfig"; sourceTree = "<group>"; };
 		A3C852221FD893E00000324E /* ColorWave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorWave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C852251FD893E00000324E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3C852271FD893E00000324E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACB9896F0F25453C1B01E563 /* Pods_ColorWave.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1530CD349068858FEAA9B391 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				561AA332425625867122B248 /* Pods_ColorWave.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7481E8CDFEA63E8E5D677FC2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7CEB73DF1A16C4877190390F /* Pods-ColorWave.debug.xcconfig */,
+				47F3F3D957B17B1B0FA5625D /* Pods-ColorWave.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A3C852191FD893E00000324E = {
 			isa = PBXGroup;
 			children = (
 				A3C852241FD893E00000324E /* ColorWave */,
 				A3C852231FD893E00000324E /* Products */,
+				7481E8CDFEA63E8E5D677FC2 /* Pods */,
+				1530CD349068858FEAA9B391 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3C852341FD893E00000324E /* Build configuration list for PBXNativeTarget "ColorWave" */;
 			buildPhases = (
+				7510B50621B75D1D17EC0933 /* [CP] Check Pods Manifest.lock */,
 				A3C8521E1FD893E00000324E /* Sources */,
 				A3C8521F1FD893E00000324E /* Frameworks */,
 				A3C852201FD893E00000324E /* Resources */,
+				1BE4FE175D14D6EFAE1DB4F4 /* [CP] Embed Pods Frameworks */,
+				0BA604611F934D20F06A2F99 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,64 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0BA604611F934D20F06A2F99 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ColorWave/Pods-ColorWave-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1BE4FE175D14D6EFAE1DB4F4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ColorWave/Pods-ColorWave-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
+				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ColorWave/Pods-ColorWave-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7510B50621B75D1D17EC0933 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ColorWave-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A3C8521E1FD893E00000324E /* Sources */ = {
@@ -272,6 +357,7 @@
 		};
 		A3C852351FD893E00000324E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CEB73DF1A16C4877190390F /* Pods-ColorWave.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -287,6 +373,7 @@
 		};
 		A3C852361FD893E00000324E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47F3F3D957B17B1B0FA5625D /* Pods-ColorWave.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
