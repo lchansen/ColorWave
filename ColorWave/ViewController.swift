@@ -13,23 +13,31 @@ import SwiftyHue
 import Gloss
 import Alamofire
 
-struct GenreData {
-    
+class GenreData {
+    var name:String = ""
+    var colors:Set<UIColor> = Set<UIColor>()
+    init(){
+    }
+    init(withName name:String, colors:Set<UIColor>){
+        self.name = name;
+        self.colors = colors
+    }
 }
 
 
 class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticatorDelegate, CollectionViewDelegate, CollectionViewDataSource {
-    var dataSourceItems: [DataSourceItem] = []
-    let reuseIdentifier = "CollectCell"
+    var dataSourceItems: [DataSourceItem] = [DataSourceItem()]
+    var genrePalattes:Array<GenreData> = [];
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSourceItems.count
+        return genrePalattes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell:GenreCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier:reuseIdentifier, for: indexPath) as! GenreCollectionViewCell
-        cell.initWithParams()
-        return cell
+        let cell:GenreCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier:"GenreCollectionViewCell", for: indexPath) as! GenreCollectionViewCell
+        cell.initWithData(genrePalattes[indexPath.row])
+        return cell 
     }
     
     
@@ -51,7 +59,26 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var initColors = Set<UIColor>()
+        initColors.insert(Color.red.base)
+        initColors.insert(Color.orange.base)
+        initColors.insert(Color.yellow.base)
+        initColors.insert(Color.green.base)
+        initColors.insert(Color.blue.base)
+        initColors.insert(Color.indigo.base)
+        initColors.insert(Color.purple.base)
+        let genreNames = ["All", "Metal", "Pop", "Folk","All", "Metal", "Pop", "Folk"]
+        for genre in genreNames {
+            genrePalattes.append(GenreData(withName: genre, colors: initColors))
+        }
         genreCollectionView.delegate = self
+        genreCollectionView.dataSource = self
+        //genreCollectionView.register(GenreCollectionViewCell.self, forCellWithReuseIdentifier: "GenreCell")
+        genreCollectionView.register(UINib(nibName: "GenreCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "GenreCollectionViewCell")
+        //genreCollectionView.register(UINib(nibName: "MyCellXibName", bundle: nil), forCellWithReuseIdentifier: "MyCell")
+        genreCollectionView.reloadData()
+        
+
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient")!)
 //        let buttonColor = UIColor(red:0.01, green:0.66, blue:0.96, alpha:1.0)
