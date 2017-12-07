@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ColorWave' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -8,4 +8,6 @@ target 'ColorWave' do
   # Pods for ColorWave
   pod 'Charts'
   pod 'Material'
+  pod 'SwiftyHue', '0.3.3'
 end
+

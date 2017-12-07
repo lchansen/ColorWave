@@ -1,7 +1,11 @@
 PODS:
+  - Alamofire (4.5.1)
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
   - Charts/Core (3.0.4)
+  - CocoaAsyncSocket (7.6.0)
+  - Gloss (2.0.0-beta.1)
+  - Log (1.0)
   - Material (2.11.4):
     - Material/Core (= 2.11.4)
   - Material/Core (2.11.4):
@@ -9,16 +13,34 @@ PODS:
   - Motion (1.2.2):
     - Motion/Core (= 1.2.2)
   - Motion/Core (1.2.2)
+  - SwiftyHue (0.3.3):
+    - SwiftyHue/Base (= 0.3.3)
+    - SwiftyHue/BridgeServices (= 0.3.3)
+  - SwiftyHue/Base (0.3.3):
+    - Alamofire (= 4.5.1)
+    - Gloss (= 2.0.0-beta.1)
+    - Log (= 1.0)
+  - SwiftyHue/BridgeServices (0.3.3):
+    - Alamofire (= 4.5.1)
+    - CocoaAsyncSocket (= 7.6.0)
+    - Gloss (= 2.0.0-beta.1)
+    - Log (= 1.0)
 
 DEPENDENCIES:
   - Charts
   - Material
+  - SwiftyHue (= 0.3.3)
 
 SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
+  CocoaAsyncSocket: b9d5589f07baf9de8f34cc25abd4fcba28f13805
+  Gloss: 3224f4d6e345138475216855a32e880d9e03e6d2
+  Log: 5e368c9528db07517d18d2d04ff5fe2b6f5a1e21
   Material: a1e1ec7789ffab391f8179047926f1736865eb7e
   Motion: 532cc6bb5d6777c58a20f71c26c5825173017f60
+  SwiftyHue: 276eeee5f8d8af3c65860faf2d95a37ab3cbbfa7
 
-PODFILE CHECKSUM: 974163ea59d1efe783234ec44bd125e518f719c7
+PODFILE CHECKSUM: 720985e54d1d609ae852070f4fec532d7e5006cb
 
 COCOAPODS: 1.3.1
