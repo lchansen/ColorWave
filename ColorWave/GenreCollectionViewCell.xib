@@ -45,7 +45,6 @@
             <viewLayoutGuide key="safeArea" id="Xxx-Pv-2gc"/>
             <size key="customSize" width="150" height="75"/>
             <connections>
-                <outlet property="colorsCollectionView" destination="dXg-1D-sgb" id="Dlj-8e-R5r"/>
                 <outlet property="genreLabel" destination="Pqu-PT-xaF" id="S4v-Gj-CFn"/>
             </connections>
             <point key="canvasLocation" x="-201" y="393.5"/>
