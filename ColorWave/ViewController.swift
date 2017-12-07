@@ -11,25 +11,65 @@ import Charts
 import Material
 import SwiftyHue
 import Gloss
+import Alamofire
 
-var swiftyHue: SwiftyHue = SwiftyHue()
-
-class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
+struct GenreData {
     
+}
+
+
+class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticatorDelegate, CollectionViewDelegate, CollectionViewDataSource {
+    var dataSourceItems: [DataSourceItem] = []
+    let reuseIdentifier = "CollectCell"
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return dataSourceItems.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell:GenreCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier:reuseIdentifier, for: indexPath) as! GenreCollectionViewCell
+        cell.initWithParams()
+        return cell
+    }
+    
+    
+    var swiftyHue: SwiftyHue = SwiftyHue()
     fileprivate let bridgeAccessConfigUserDefaultsKey = "BridgeAccessConfig"
-    
     fileprivate let bridgeFinder = BridgeFinder()
     fileprivate var bridgeAuthenticator: BridgeAuthenticator?
     @IBOutlet weak var bridgeStatus: UILabel!
     var bridge:HueBridge? = nil
+    var lights = Array<String>()
+    @IBOutlet weak var numLightsLabel: UILabel!
+    
+    @IBOutlet weak var refreshButton: Button!
+    @IBOutlet weak var runTestButton: Button!
+    @IBOutlet weak var miscButton: FABButton!
+    @IBOutlet weak var genreCollectionView: UICollectionView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //swiftyHue.enableLogging(true)
+        genreCollectionView.delegate = self
         
-        if let bridgeAccessConfig = readBridgeAccessConfig() {
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient")!)
+//        let buttonColor = UIColor(red:0.01, green:0.66, blue:0.96, alpha:1.0)
+        refreshButton.backgroundColor = Color.blue.base
+        runTestButton.backgroundColor = Color.blue.base
+        refreshButton.pulseColor = .white
+        runTestButton.pulseColor = .white
+        miscButton.pulseColor = .white
+        miscButton.backgroundColor = Color.red.base
+        
+//        refreshButton.titleLabel?
+//        runTestButton.titleColor = UIColor.white
+        
+        swiftyHue.enableLogging(true)
+        
+        if let _ = readBridgeAccessConfig() {
             print("found existing hue config")
-            runTestCode()
+            runConnect()
         } else {
             print("searching for hue config")
             bridgeFinder.delegate = self
@@ -62,7 +102,7 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
         print("Connected with username: ", username)
         let bac = BridgeAccessConfig(bridgeId: "BridgeId", ipAddress: (bridge?.ip)!, username: username)
         self.writeBridgeAccessConfig(bridgeAccessConfig: bac)
-        runTestCode()
+        runConnect()
     }
     
     func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
@@ -79,51 +119,57 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
         bridgeStatus.text = "Timeout"
         print("Timeout")
     }
-
-
-}
-
-extension ViewController {
-    
-    func readBridgeAccessConfig() -> BridgeAccessConfig? {
-        
-        let userDefaults = UserDefaults.standard
-        let bridgeAccessConfigJSON = userDefaults.object(forKey: bridgeAccessConfigUserDefaultsKey) as? JSON
-        
-        var bridgeAccessConfig: BridgeAccessConfig?
-        if let bridgeAccessConfigJSON = bridgeAccessConfigJSON {
-            
-            bridgeAccessConfig = BridgeAccessConfig(json: bridgeAccessConfigJSON)
+    @IBAction func refreshLights() {
+        swiftyHue.resourceAPI.fetchLights{
+            (result: Result<[String:Light]>) in
+            print("resource api fetchLights")
+            if let keys = result.value?.keys{
+                self.lights = Array(keys)
+                print(self.lights)
+                self.numLightsLabel.text = String(self.lights.count)
+            }
         }
-        
-        return bridgeAccessConfig
     }
-    
-    func writeBridgeAccessConfig(bridgeAccessConfig: BridgeAccessConfig) {
-        
-        let userDefaults = UserDefaults.standard
-        let bridgeAccessConfigJSON = bridgeAccessConfig.toJSON()
-        userDefaults.set(bridgeAccessConfigJSON, forKey: bridgeAccessConfigUserDefaultsKey)
-    }
-}
-
-extension ViewController {
-    
-    func runTestCode() {
-        let bac = self.readBridgeAccessConfig()!
-        swiftyHue.setBridgeAccessConfig(bac)
-        print("connected")
-        bridgeStatus.text = "connected"
-        
-        swiftyHue.setLocalHeartbeatInterval(2, forResourceType: .lights)
-        
-        swiftyHue.startHeartbeat();
-        
+    @IBAction func runTest() {
         var lightState = LightState()
         lightState.on = false;
-        swiftyHue.bridgeSendAPI.setLightStateForGroupWithId("1", withLightState: lightState) { (errors) in
-
-            print(errors)
+        lightState.transitiontime = 0
+        swiftyHue.bridgeSendAPI.setLightStateForGroupWithId("0", withLightState: lightState) { (errors) in
+            print(errors ?? "")
+        }
+        
+        var when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            var lightState = LightState()
+            lightState.on = true;
+            lightState.transitiontime = 0
+            lightState.brightness = 254
+            let xy = HueUtilities.calculateXY(SwiftyHueColor.blue, forModel: "LCT001")
+            lightState.xy = [Float(xy.x), Float(xy.y)]
+            
+            
+            self.swiftyHue.bridgeSendAPI.setLightStateForGroupWithId("0", withLightState: lightState) { (errors) in
+                if let err = errors{
+                    print(err)
+                }
+            }
+        }
+        
+        when = DispatchTime.now() + 5 // change 2 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            var lightState = LightState()
+            lightState.on = true;
+            lightState.transitiontime = 2 //10*100ms
+            lightState.brightness = 254
+            let xy = HueUtilities.calculateXY(SwiftyHueColor.white, forModel: "LCT001")
+            lightState.xy = [Float(xy.x), Float(xy.y)]
+            
+            
+            self.swiftyHue.bridgeSendAPI.setLightStateForGroupWithId("0", withLightState: lightState) { (errors) in
+                if let err = errors{
+                    print(err)
+                }
+            }
         }
         
         //        var beatManager = BeatManager(bridgeAccessConfig: bridgeAccessConfig)
@@ -137,8 +183,6 @@ extension ViewController {
         //
         //        beatManager.startHeartbeat()
         //
-        NotificationCenter.default.addObserver(self, selector: #selector(self.lightChanged), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.lightsUpdated.rawValue), object: nil)
-        
         //        var lightState = LightState()
         //        lightState.on = true
         
@@ -201,15 +245,59 @@ extension ViewController {
         //        }
     }
     
-    @objc public func lightChanged() {
-        
-        print("Changed")
-        
-        //        var cache = BridgeResourcesCacheManager.sharedInstance.cache
-        //        var light = cache.groups["1"]!
-        //        print(light.name)
+    @IBAction func lightOffTest(_ sender: Any) {
+        var lightState = LightState()
+        lightState.on = false
+        lightState.transitiontime = 0
+        swiftyHue.bridgeSendAPI.updateLightStateForId("6", withLightState: lightState){ (error) in if let err=error{print(err)}}
     }
 }
+
+extension ViewController {
+    
+    func readBridgeAccessConfig() -> BridgeAccessConfig? {
+        
+        let userDefaults = UserDefaults.standard
+        let bridgeAccessConfigJSON = userDefaults.object(forKey: bridgeAccessConfigUserDefaultsKey) as? JSON
+        
+        var bridgeAccessConfig: BridgeAccessConfig?
+        if let bridgeAccessConfigJSON = bridgeAccessConfigJSON {
+            
+            bridgeAccessConfig = BridgeAccessConfig(json: bridgeAccessConfigJSON)
+        }
+        
+        return bridgeAccessConfig
+    }
+    
+    func writeBridgeAccessConfig(bridgeAccessConfig: BridgeAccessConfig) {
+        
+        let userDefaults = UserDefaults.standard
+        let bridgeAccessConfigJSON = bridgeAccessConfig.toJSON()
+        userDefaults.set(bridgeAccessConfigJSON, forKey: bridgeAccessConfigUserDefaultsKey)
+    }
+}
+
+extension ViewController {
+    
+    func runConnect(){
+        let bac = self.readBridgeAccessConfig()!
+        swiftyHue.setBridgeAccessConfig(bac)
+        print("connected")
+        bridgeStatus.text = bac.ipAddress
+        refreshLights()
+        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .lights)
+        swiftyHue.startHeartbeat();
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.lightChanged), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.lightsUpdated.rawValue), object: nil)
+    }
+    
+    @objc public func lightChanged() {
+        print("Changed")
+    }
+    
+}
+
+
 
 
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A32D5C8D1FD928DC008F41EA /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32D5C8C1FD928DC008F41EA /* GenreCollectionViewCell.swift */; };
+		A32D5C911FD934FC008F41EA /* GenreColorPaletteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32D5C901FD934FC008F41EA /* GenreColorPaletteCollectionViewCell.swift */; };
 		A3C852261FD893E00000324E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C852251FD893E00000324E /* AppDelegate.swift */; };
 		A3C852281FD893E00000324E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C852271FD893E00000324E /* ViewController.swift */; };
 		A3C8522B1FD893E00000324E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3C852291FD893E00000324E /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 		47F3F3D957B17B1B0FA5625D /* Pods-ColorWave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorWave.release.xcconfig"; path = "Pods/Target Support Files/Pods-ColorWave/Pods-ColorWave.release.xcconfig"; sourceTree = "<group>"; };
 		561AA332425625867122B248 /* Pods_ColorWave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ColorWave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CEB73DF1A16C4877190390F /* Pods-ColorWave.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorWave.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ColorWave/Pods-ColorWave.debug.xcconfig"; sourceTree = "<group>"; };
+		A32D5C8C1FD928DC008F41EA /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
+		A32D5C901FD934FC008F41EA /* GenreColorPaletteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreColorPaletteCollectionViewCell.swift; sourceTree = "<group>"; };
 		A3C852221FD893E00000324E /* ColorWave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorWave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C852251FD893E00000324E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3C852271FD893E00000324E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 			children = (
 				A3C852251FD893E00000324E /* AppDelegate.swift */,
 				A3C852271FD893E00000324E /* ViewController.swift */,
+				A32D5C8C1FD928DC008F41EA /* GenreCollectionViewCell.swift */,
+				A32D5C901FD934FC008F41EA /* GenreColorPaletteCollectionViewCell.swift */,
 				A3C852291FD893E00000324E /* Main.storyboard */,
 				A3C8522C1FD893E00000324E /* Assets.xcassets */,
 				A3C8522E1FD893E00000324E /* LaunchScreen.storyboard */,
@@ -232,6 +238,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3C852281FD893E00000324E /* ViewController.swift in Sources */,
+				A32D5C8D1FD928DC008F41EA /* GenreCollectionViewCell.swift in Sources */,
+				A32D5C911FD934FC008F41EA /* GenreColorPaletteCollectionViewCell.swift in Sources */,
 				A3C852261FD893E00000324E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
