@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -105,6 +106,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="31.875" y="63.380281690140848"/>
+        </scene>
+        <!--Genre Config Modal View Controller-->
+        <scene sceneID="fHr-FH-VjX">
+            <objects>
+                <viewController storyboardIdentifier="GenreConfigModalID" id="70l-It-si4" customClass="GenreConfigModalViewController" customModule="ColorWave" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Iu-1g-1og">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rB0-pk-bch">
+                                <rect key="frame" x="48" y="164" width="225" height="240"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-Ux-3UJ" customClass="RaisedButton" customModule="Material">
+                                        <rect key="frame" x="75" y="202" width="74" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="n8C-Px-BPj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="donePressed:" destination="70l-It-si4" eventType="touchUpInside" id="Psi-ZD-fCh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99113315343856812" green="0.243599534034729" blue="0.0095879826694726944" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="CyX-Ux-3UJ" firstAttribute="leading" secondItem="rB0-pk-bch" secondAttribute="leading" constant="75" id="4f9-0P-yq7"/>
+                                    <constraint firstItem="CyX-Ux-3UJ" firstAttribute="centerX" secondItem="rB0-pk-bch" secondAttribute="centerX" id="BMj-7f-6e9"/>
+                                    <constraint firstItem="CyX-Ux-3UJ" firstAttribute="bottom" secondItem="rB0-pk-bch" secondAttribute="bottomMargin" id="Tbt-W6-RH4"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OH-lC-DwO">
+                                <rect key="frame" x="40" y="273" width="240" height="23"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1OH-lC-DwO" firstAttribute="centerY" secondItem="rB0-pk-bch" secondAttribute="centerY" id="Jc0-ko-vaU"/>
+                            <constraint firstItem="1OH-lC-DwO" firstAttribute="centerY" secondItem="9Iu-1g-1og" secondAttribute="centerY" id="M5B-gk-O0m"/>
+                            <constraint firstItem="rB0-pk-bch" firstAttribute="centerX" secondItem="1OH-lC-DwO" secondAttribute="centerX" id="WbG-7Y-2cT"/>
+                            <constraint firstItem="rB0-pk-bch" firstAttribute="top" secondItem="uu4-6e-hyD" secondAttribute="top" constant="144" id="XRd-HU-6p5"/>
+                            <constraint firstItem="rB0-pk-bch" firstAttribute="centerX" secondItem="9Iu-1g-1og" secondAttribute="centerX" id="fbL-yc-e7h"/>
+                            <constraint firstItem="rB0-pk-bch" firstAttribute="leading" secondItem="uu4-6e-hyD" secondAttribute="leading" constant="48" id="wvS-JO-C8l"/>
+                            <constraint firstItem="1OH-lC-DwO" firstAttribute="leading" secondItem="uu4-6e-hyD" secondAttribute="leading" constant="40" id="xwn-gs-M1j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uu4-6e-hyD"/>
+                    </view>
+                    <connections>
+                        <outlet property="cardView" destination="rB0-pk-bch" id="qcL-Iq-pAb"/>
+                        <outlet property="doneButton" destination="CyX-Ux-3UJ" id="4mg-md-lnJ"/>
+                        <outlet property="genreLabel" destination="1OH-lC-DwO" id="skM-pk-Qa8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZlZ-4F-zfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984.375" y="71.83098591549296"/>
         </scene>
     </scenes>
 </document>

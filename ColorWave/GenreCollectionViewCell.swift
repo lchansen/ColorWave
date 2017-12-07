@@ -9,10 +9,10 @@
 import UIKit
 import Material
 
-class GenreCollectionViewCell: CollectionViewCell {
-//    UICollectionViewDelegate, UICollectionViewDataSource
+class GenreCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet var genreLabel: UILabel!
-    
+    @IBOutlet weak var colorCollection: UICollectionView!
+    let colorCellIdentifier = "colorCellIdentifier"
     var genreData:GenreData = GenreData()
 
     override init(frame: CGRect) {
@@ -20,8 +20,6 @@ class GenreCollectionViewCell: CollectionViewCell {
         print("frame")
         print(frame)
         self.frame.size = CGSize(width: 150.0, height: 75.0)
-//        colorsCollectionView.register(UINib(nibName: "ColorCell", bundle: nil), forCellWithReuseIdentifier: "ColorCell")
-        
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -29,6 +27,24 @@ class GenreCollectionViewCell: CollectionViewCell {
     func initWithData(_ data:GenreData){
         self.genreData = data
         self.genreLabel?.text = self.genreData.name
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.colorCollection.delegate = self
+        self.colorCollection.dataSource = self
+        //if you use xibs:
+        self.colorCollection.register(UINib(nibName:"ColorCell", bundle: nil), forCellWithReuseIdentifier: colorCellIdentifier)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.genreData.colors.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = self.colorCollection.dequeueReusableCell(withReuseIdentifier: colorCellIdentifier, for: indexPath) as! ColorCell
+        cell.backgroundColor = Array(self.genreData.colors)[indexPath.row]
+        return cell as UICollectionViewCell
     }
     
 //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -25,7 +25,7 @@ class GenreData {
 }
 
 
-class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticatorDelegate, CollectionViewDelegate, CollectionViewDataSource {
+class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticatorDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate{
     var dataSourceItems: [DataSourceItem] = [DataSourceItem()]
     var genrePalattes:Array<GenreData> = [];
     
@@ -37,8 +37,36 @@ class ViewController: UIViewController, BridgeFinderDelegate, BridgeAuthenticato
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:GenreCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier:"GenreCollectionViewCell", for: indexPath) as! GenreCollectionViewCell
         cell.initWithData(genrePalattes[indexPath.row])
+        cell.backgroundColor = UIColor.white
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
+        tap.delegate = self
+        cell.addGestureRecognizer(tap)
         return cell 
     }
+    @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
+        // handling code
+        print("handled tap")
+        let senderView = sender?.view as! GenreCollectionViewCell
+        print(senderView.genreData.name)
+//        let modal = GenreConfigModalViewController()
+//        let navController = UINavigationController(rootViewController: modal)
+//        self.present(navController, animated: true, completion: nil)
+        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GenreConfigModalID") as! GenreConfigModalViewController
+        self.addChildViewController(popOverVC)
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParentViewController: self)
+        popOverVC.setGenreData(gd: senderView.genreData)
+        
+        
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        //code
+////        LoginViewController *loginView = [[LoginViewController alloc]init];
+////        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginController]; //add this as a root view controller
+////        [self presentViewController:navController animated:YES completion:nil];
+//    }
     
     
     var swiftyHue: SwiftyHue = SwiftyHue()
