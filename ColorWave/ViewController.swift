@@ -32,16 +32,7 @@ import Alamofire
     var activeColors = Array<UIColor>()
     var palattes = Array<GenreData>()
     
-    
     public override func viewDidLoad() {
-        let arr = [0,1,2,3,4]
-        print(arr[0..<arr.count/2])
-        print(arr[(arr.count/2)...])
-        print(Int(arc4random_uniform(UInt32(3))))
-        print(Int(arc4random_uniform(UInt32(3))))
-        print(Int(arc4random_uniform(UInt32(3))))
-        print(Int(arc4random_uniform(UInt32(3))))
-        print(Int(arc4random_uniform(UInt32(3))))
         super.viewDidLoad()
         audioObj.initialize(self as UIViewController)
         
@@ -253,7 +244,11 @@ import Alamofire
     public func bridgeAuthenticatorDidTimeout(_ authenticator: BridgeAuthenticator) {
         bridgeStatus.text = "Timeout"
         print("Timeout")
+        bridgeAuthenticator = BridgeAuthenticator(bridge: bridge!, uniqueIdentifier: "swiftyhue#\(UIDevice.current.name)")
+        bridgeAuthenticator?.delegate = self
+        bridgeAuthenticator?.start()
     }
+    
     func refreshLights() {
         swiftyHue.resourceAPI.fetchLights{
             (result: Result<[String:Light]>) in
