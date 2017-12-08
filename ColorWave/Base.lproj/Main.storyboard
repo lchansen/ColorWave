@@ -172,7 +172,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rB0-pk-bch">
+                            <view contentMode="scaleToFill" restorationIdentifier="CardViewId" translatesAutoresizingMaskIntoConstraints="NO" id="rB0-pk-bch">
                                 <rect key="frame" x="48" y="164" width="225" height="240"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-Ux-3UJ" customClass="RaisedButton" customModule="Material">
@@ -205,18 +205,43 @@
                                     <constraint firstItem="1OH-lC-DwO" firstAttribute="centerX" secondItem="CyX-Ux-3UJ" secondAttribute="centerX" id="xBO-h7-Z9H"/>
                                 </constraints>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jvf-pz-Wa2">
+                                <rect key="frame" x="48" y="220" width="225" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="zpX-E6-6TK">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ok2-d5-uP7">
+                                        <rect key="frame" x="5" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rB0-pk-bch" firstAttribute="centerY" secondItem="9Iu-1g-1og" secondAttribute="centerY" id="Wsl-rF-n75"/>
+                            <constraint firstItem="Jvf-pz-Wa2" firstAttribute="centerY" secondItem="rB0-pk-bch" secondAttribute="centerY" id="Xxd-ov-GTh"/>
                             <constraint firstItem="rB0-pk-bch" firstAttribute="centerX" secondItem="9Iu-1g-1og" secondAttribute="centerX" id="aH1-HG-9gA"/>
+                            <constraint firstItem="Jvf-pz-Wa2" firstAttribute="leading" secondItem="rB0-pk-bch" secondAttribute="leading" id="b2r-Wz-SHL"/>
+                            <constraint firstItem="Jvf-pz-Wa2" firstAttribute="top" secondItem="uu4-6e-hyD" secondAttribute="top" constant="200" id="fUE-2Z-vAy"/>
+                            <constraint firstItem="Jvf-pz-Wa2" firstAttribute="trailing" secondItem="rB0-pk-bch" secondAttribute="trailing" id="fka-Zx-tQG"/>
                             <constraint firstItem="rB0-pk-bch" firstAttribute="leading" secondItem="uu4-6e-hyD" secondAttribute="leading" constant="48" id="nVA-qa-Yro"/>
                             <constraint firstItem="rB0-pk-bch" firstAttribute="top" secondItem="uu4-6e-hyD" secondAttribute="top" constant="144" id="r8s-YT-Kg9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uu4-6e-hyD"/>
                     </view>
                     <connections>
-                        <outlet property="cardView" destination="rB0-pk-bch" id="qcL-Iq-pAb"/>
+                        <outlet property="cardView" destination="rB0-pk-bch" id="mx8-yr-foB"/>
+                        <outlet property="colorSelectorCollection" destination="Jvf-pz-Wa2" id="EjD-W4-viP"/>
                         <outlet property="doneButton" destination="CyX-Ux-3UJ" id="4mg-md-lnJ"/>
                         <outlet property="genreLabel" destination="1OH-lC-DwO" id="skM-pk-Qa8"/>
                     </connections>

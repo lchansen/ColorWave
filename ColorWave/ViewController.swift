@@ -81,6 +81,11 @@ import Alamofire
         }
     }
     
+    func reloadPalattes(){
+        palattes = Array(GenreColorModel.sharedInstance.palattes.values)
+        genreCollectionView.reloadData()
+    }
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return GenreColorModel.sharedInstance.palattes.count
     }
@@ -112,9 +117,6 @@ import Alamofire
         print("handled double tap")
         let senderView = sender?.view as! GenreCollectionViewCell
         print(senderView.genreData.name)
-        //        let modal = GenreConfigModalViewController()
-        //        let navController = UINavigationController(rootViewController: modal)
-        //        self.present(navController, animated: true, completion: nil)
         let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GenreConfigModalID") as! GenreConfigModalViewController
         self.addChildViewController(popOverVC)
         popOverVC.view.frame = self.view.frame

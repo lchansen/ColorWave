@@ -29,6 +29,8 @@
 		A3C852301FD893E00000324E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3C8522E1FD893E00000324E /* LaunchScreen.storyboard */; };
 		A3F27BFA1FDA3F88004A0984 /* CNNPredictGenre.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A3F27BF91FDA3F88004A0984 /* CNNPredictGenre.mlmodel */; };
 		A3F27BFC1FDA4F94004A0984 /* GenreColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F27BFB1FDA4F94004A0984 /* GenreColorModel.swift */; };
+		A3F27BFF1FDA7A40004A0984 /* ColorCellSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F27BFD1FDA7A40004A0984 /* ColorCellSelectable.swift */; };
+		A3F27C001FDA7A40004A0984 /* ColorCellSelectable.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F27BFE1FDA7A40004A0984 /* ColorCellSelectable.xib */; };
 		ACB9896F0F25453C1B01E563 /* Pods_ColorWave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561AA332425625867122B248 /* Pods_ColorWave.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,8 @@
 		A3C852311FD893E00000324E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3F27BF91FDA3F88004A0984 /* CNNPredictGenre.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = CNNPredictGenre.mlmodel; path = ML/CNNPredictGenre.mlmodel; sourceTree = SOURCE_ROOT; };
 		A3F27BFB1FDA4F94004A0984 /* GenreColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreColorModel.swift; sourceTree = "<group>"; };
+		A3F27BFD1FDA7A40004A0984 /* ColorCellSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCellSelectable.swift; sourceTree = "<group>"; };
+		A3F27BFE1FDA7A40004A0984 /* ColorCellSelectable.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCellSelectable.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,8 @@
 				A3C852311FD893E00000324E /* Info.plist */,
 				A3735E7A1FD9EA6700A00551 /* ColorCell.swift */,
 				A3735E7B1FD9EA6700A00551 /* ColorCell.xib */,
+				A3F27BFD1FDA7A40004A0984 /* ColorCellSelectable.swift */,
+				A3F27BFE1FDA7A40004A0984 /* ColorCellSelectable.xib */,
 			);
 			path = ColorWave;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 				A3C8522D1FD893E00000324E /* Assets.xcassets in Resources */,
 				A3735E7D1FD9EA6700A00551 /* ColorCell.xib in Resources */,
 				A3C8522B1FD893E00000324E /* Main.storyboard in Resources */,
+				A3F27C001FDA7A40004A0984 /* ColorCellSelectable.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +327,7 @@
 				A3735E9B1FDA0D2E00A00551 /* FFTHelper.m in Sources */,
 				A3735E9F1FDA0DB000A00551 /* AudioProcessor.m in Sources */,
 				A3C852281FD893E00000324E /* ViewController.swift in Sources */,
+				A3F27BFF1FDA7A40004A0984 /* ColorCellSelectable.swift in Sources */,
 				A3735E971FDA0D2E00A00551 /* CircularBuffer.m in Sources */,
 				A3735E7F1FD9F39D00A00551 /* GenreConfigModalViewController.swift in Sources */,
 				A3735E9C1FDA0D2E00A00551 /* libmfcc.c in Sources */,
