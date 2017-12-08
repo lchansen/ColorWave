@@ -12,9 +12,6 @@
 #define AudioProcessor_h
 @interface AudioProcessor : NSObject
 
-
-//- (void)setUpdateBlock:(void(^)(void))updateBlock;
-//- (void)setArrays:(float*)fftArr mfccArr:(float*) mfccArr;
 - (void)initialize:(UIViewController*) vc;
 - (void)start;
 - (void)stop;
