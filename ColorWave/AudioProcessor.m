@@ -13,6 +13,7 @@
 #import "FFTHelper.h"
 #import "math.h"
 #import "libmfcc.h"
+#import "ColorWave-Swift.h"
 
 #define BUFFER_SIZE 1024
 #define TIME_INTERVAL 0.05
@@ -30,6 +31,9 @@
 @property (strong, nonatomic) Novocaine *audioManager;
 @property (strong, nonatomic) CircularBuffer *buffer;
 @property (strong, nonatomic) FFTHelper *fftHelper;
+@property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) ViewController *masterVC;
+
 @end
 
 @implementation AudioProcessor
@@ -72,6 +76,12 @@
         _circleIndex = 0;
     }
     return _circleIndex;
+}
+-(ViewController*)masterVC{
+    if(!_masterVC){
+        _masterVC = [[ViewController alloc] init];
+    }
+    return _masterVC;
 }
 
 -(void)insertToBass:(float)bassMag {
@@ -119,25 +129,21 @@
     self.mfccPointer = mfccArr;
 }
 */
--(void)initialize {
+-(void)initialize: (UIViewController*) vc{
     self.midTimeChange = 0;
+    self.masterVC = (ViewController*) vc;
     
     NSLog(@"STARTING Microphone");
     __block AudioProcessor * __weak  weakSelf = self;
     [self.audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels){
         [weakSelf.buffer addNewFloatData:data withNumSamples:numFrames];
-        
-        
     }];
     
     [self.audioManager play];
 }
 - (void)start{
     NSLog(@"STARTING UP");
-    
-    
-    
-    [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL
                                      target:self
                                    selector:@selector(takeFFT)
                                    userInfo:nil
@@ -149,6 +155,11 @@
                                    userInfo:nil
                                     repeats:YES];*/
 }
+- (void)stop{
+    NSLog(@"STOPPING");
+    [self.timer invalidate];
+}
+
 
 -(void) takeFFT {
     self.midTimeChange++;

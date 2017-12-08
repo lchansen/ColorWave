@@ -111,8 +111,6 @@
 			children = (
 				A3F27C091FDA904B004A0984 /* AudioFileReader.h */,
 				A3F27C101FDA904B004A0984 /* AudioFileReader.m */,
-				A3F27C0B1FDA904B004A0984 /* AudioProcessor.h */,
-				A3F27C0E1FDA904B004A0984 /* AudioProcessor.m */,
 				A3F27C041FDA904A004A0984 /* BufferedOverlapQueue.h */,
 				A3F27C0C1FDA904B004A0984 /* BufferedOverlapQueue.m */,
 				A3F27C121FDA904B004A0984 /* CircularBuffer.h */,
@@ -156,6 +154,8 @@
 		A3C852241FD893E00000324E /* ColorWave */ = {
 			isa = PBXGroup;
 			children = (
+				A3F27C0B1FDA904B004A0984 /* AudioProcessor.h */,
+				A3F27C0E1FDA904B004A0984 /* AudioProcessor.m */,
 				A3F27BF91FDA3F88004A0984 /* CNNPredictGenre.mlmodel */,
 				A3C852251FD893E00000324E /* AppDelegate.swift */,
 				A3C852271FD893E00000324E /* ViewController.swift */,
