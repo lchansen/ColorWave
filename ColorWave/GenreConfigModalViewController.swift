@@ -22,6 +22,8 @@ class GenreConfigModalViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.doneButton.backgroundColor = Color.blue.base
         self.doneButton.titleColor = UIColor.white
+        self.cardView.backgroundColor = Color.grey.lighten2
+        self.cardView.layer.cornerRadius = 5.0;
         
     }
 

@@ -22,11 +22,11 @@
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dXg-1D-sgb">
                         <rect key="frame" x="0.0" y="31" width="150" height="44"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="RS9-Z2-mIT">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" sectionInsetReference="safeArea" id="RS9-Z2-mIT">
                             <size key="itemSize" width="15" height="15"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="5" minY="0.0" maxX="10" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqu-PT-xaF">
@@ -39,12 +39,12 @@
             </view>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="dXg-1D-sgb" firstAttribute="leading" secondItem="kO2-4w-Jfg" secondAttribute="leading" id="LG4-mC-8iV"/>
-                <constraint firstItem="dXg-1D-sgb" firstAttribute="top" secondItem="Pqu-PT-xaF" secondAttribute="bottom" constant="10" id="Oov-fL-QZo"/>
-                <constraint firstItem="Pqu-PT-xaF" firstAttribute="top" secondItem="kO2-4w-Jfg" secondAttribute="top" id="T6x-lt-1tZ"/>
-                <constraint firstItem="Pqu-PT-xaF" firstAttribute="centerX" secondItem="dXg-1D-sgb" secondAttribute="centerX" id="T7B-Fd-fAg"/>
-                <constraint firstAttribute="bottom" secondItem="dXg-1D-sgb" secondAttribute="bottom" id="ozc-Ik-qrv"/>
-                <constraint firstAttribute="trailing" secondItem="dXg-1D-sgb" secondAttribute="trailing" id="q6m-IP-Ago"/>
+                <constraint firstAttribute="trailing" secondItem="dXg-1D-sgb" secondAttribute="trailing" id="AEx-2E-HAm"/>
+                <constraint firstItem="Pqu-PT-xaF" firstAttribute="centerX" secondItem="dXg-1D-sgb" secondAttribute="centerX" id="Ap9-Hr-gAW"/>
+                <constraint firstAttribute="bottom" secondItem="dXg-1D-sgb" secondAttribute="bottom" id="BLO-Om-64m"/>
+                <constraint firstItem="dXg-1D-sgb" firstAttribute="leading" secondItem="kO2-4w-Jfg" secondAttribute="leading" id="SLv-pN-kL1"/>
+                <constraint firstItem="dXg-1D-sgb" firstAttribute="top" secondItem="Pqu-PT-xaF" secondAttribute="bottom" constant="10" id="gzO-kJ-bj9"/>
+                <constraint firstItem="Pqu-PT-xaF" firstAttribute="top" secondItem="kO2-4w-Jfg" secondAttribute="top" id="yio-LX-fo2"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Xxx-Pv-2gc"/>
             <size key="customSize" width="150" height="75"/>

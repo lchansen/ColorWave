@@ -12,11 +12,23 @@
 		A3735E7C1FD9EA6700A00551 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3735E7A1FD9EA6700A00551 /* ColorCell.swift */; };
 		A3735E7D1FD9EA6700A00551 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3735E7B1FD9EA6700A00551 /* ColorCell.xib */; };
 		A3735E7F1FD9F39D00A00551 /* GenreConfigModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3735E7E1FD9F39D00A00551 /* GenreConfigModalViewController.swift */; };
+		A3735E951FDA0D2E00A00551 /* DataBufferBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = A3735E831FDA0D2C00A00551 /* DataBufferBlock.m */; };
+		A3735E961FDA0D2E00A00551 /* PeakFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3735E871FDA0D2C00A00551 /* PeakFinder.m */; };
+		A3735E971FDA0D2E00A00551 /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = A3735E881FDA0D2D00A00551 /* CircularBuffer.m */; };
+		A3735E981FDA0D2E00A00551 /* BufferedOverlapQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A3735E8B1FDA0D2D00A00551 /* BufferedOverlapQueue.m */; };
+		A3735E991FDA0D2E00A00551 /* CubicSpline.m in Sources */ = {isa = PBXBuildFile; fileRef = A3735E8D1FDA0D2D00A00551 /* CubicSpline.m */; };
+		A3735E9A1FDA0D2E00A00551 /* AudioFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = A3735E8E1FDA0D2D00A00551 /* AudioFileReader.m */; };
+		A3735E9B1FDA0D2E00A00551 /* FFTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A3735E911FDA0D2D00A00551 /* FFTHelper.m */; };
+		A3735E9C1FDA0D2E00A00551 /* libmfcc.c in Sources */ = {isa = PBXBuildFile; fileRef = A3735E921FDA0D2D00A00551 /* libmfcc.c */; };
+		A3735E9D1FDA0D2E00A00551 /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = A3735E941FDA0D2E00A00551 /* Novocaine.m */; };
+		A3735E9F1FDA0DB000A00551 /* AudioProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = A3735E9E1FDA0DB000A00551 /* AudioProcessor.m */; };
 		A3C852261FD893E00000324E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C852251FD893E00000324E /* AppDelegate.swift */; };
 		A3C852281FD893E00000324E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C852271FD893E00000324E /* ViewController.swift */; };
 		A3C8522B1FD893E00000324E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3C852291FD893E00000324E /* Main.storyboard */; };
 		A3C8522D1FD893E00000324E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3C8522C1FD893E00000324E /* Assets.xcassets */; };
 		A3C852301FD893E00000324E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3C8522E1FD893E00000324E /* LaunchScreen.storyboard */; };
+		A3F27BFA1FDA3F88004A0984 /* CNNPredictGenre.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A3F27BF91FDA3F88004A0984 /* CNNPredictGenre.mlmodel */; };
+		A3F27BFC1FDA4F94004A0984 /* GenreColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F27BFB1FDA4F94004A0984 /* GenreColorModel.swift */; };
 		ACB9896F0F25453C1B01E563 /* Pods_ColorWave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561AA332425625867122B248 /* Pods_ColorWave.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +41,27 @@
 		A3735E7A1FD9EA6700A00551 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		A3735E7B1FD9EA6700A00551 /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
 		A3735E7E1FD9F39D00A00551 /* GenreConfigModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreConfigModalViewController.swift; sourceTree = "<group>"; };
+		A3735E821FDA0D2B00A00551 /* ColorWave-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ColorWave-Bridging-Header.h"; sourceTree = "<group>"; };
+		A3735E831FDA0D2C00A00551 /* DataBufferBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataBufferBlock.m; path = ../../ColorWaveDev/AudioDSPUtils/DataBufferBlock.m; sourceTree = "<group>"; };
+		A3735E841FDA0D2C00A00551 /* BufferedOverlapQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BufferedOverlapQueue.h; path = ../../ColorWaveDev/AudioDSPUtils/BufferedOverlapQueue.h; sourceTree = "<group>"; };
+		A3735E851FDA0D2C00A00551 /* PeakFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PeakFinder.h; path = ../../ColorWaveDev/AudioDSPUtils/PeakFinder.h; sourceTree = "<group>"; };
+		A3735E861FDA0D2C00A00551 /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Novocaine.h; path = ../../ColorWaveDev/AudioDSPUtils/Novocaine.h; sourceTree = "<group>"; };
+		A3735E871FDA0D2C00A00551 /* PeakFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PeakFinder.m; path = ../../ColorWaveDev/AudioDSPUtils/PeakFinder.m; sourceTree = "<group>"; };
+		A3735E881FDA0D2D00A00551 /* CircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CircularBuffer.m; path = ../../ColorWaveDev/AudioDSPUtils/CircularBuffer.m; sourceTree = "<group>"; };
+		A3735E891FDA0D2D00A00551 /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioFileReader.h; path = ../../ColorWaveDev/AudioDSPUtils/AudioFileReader.h; sourceTree = "<group>"; };
+		A3735E8A1FDA0D2D00A00551 /* FFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FFTHelper.h; path = ../../ColorWaveDev/AudioDSPUtils/FFTHelper.h; sourceTree = "<group>"; };
+		A3735E8B1FDA0D2D00A00551 /* BufferedOverlapQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BufferedOverlapQueue.m; path = ../../ColorWaveDev/AudioDSPUtils/BufferedOverlapQueue.m; sourceTree = "<group>"; };
+		A3735E8C1FDA0D2D00A00551 /* libmfcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libmfcc.h; path = ../../ColorWaveDev/AudioDSPUtils/libmfcc.h; sourceTree = "<group>"; };
+		A3735E8D1FDA0D2D00A00551 /* CubicSpline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CubicSpline.m; path = ../../ColorWaveDev/AudioDSPUtils/CubicSpline.m; sourceTree = "<group>"; };
+		A3735E8E1FDA0D2D00A00551 /* AudioFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioFileReader.m; path = ../../ColorWaveDev/AudioDSPUtils/AudioFileReader.m; sourceTree = "<group>"; };
+		A3735E8F1FDA0D2D00A00551 /* CubicSpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CubicSpline.h; path = ../../ColorWaveDev/AudioDSPUtils/CubicSpline.h; sourceTree = "<group>"; };
+		A3735E901FDA0D2D00A00551 /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircularBuffer.h; path = ../../ColorWaveDev/AudioDSPUtils/CircularBuffer.h; sourceTree = "<group>"; };
+		A3735E911FDA0D2D00A00551 /* FFTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FFTHelper.m; path = ../../ColorWaveDev/AudioDSPUtils/FFTHelper.m; sourceTree = "<group>"; };
+		A3735E921FDA0D2D00A00551 /* libmfcc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = libmfcc.c; path = ../../ColorWaveDev/AudioDSPUtils/libmfcc.c; sourceTree = "<group>"; };
+		A3735E931FDA0D2E00A00551 /* DataBufferBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataBufferBlock.h; path = ../../ColorWaveDev/AudioDSPUtils/DataBufferBlock.h; sourceTree = "<group>"; };
+		A3735E941FDA0D2E00A00551 /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Novocaine.m; path = ../../ColorWaveDev/AudioDSPUtils/Novocaine.m; sourceTree = "<group>"; };
+		A3735E9E1FDA0DB000A00551 /* AudioProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioProcessor.m; path = ../../ColorWaveDev/ColorWave/AudioProcessor.m; sourceTree = "<group>"; };
+		A3735EA01FDA0DC700A00551 /* AudioProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioProcessor.h; path = ../../ColorWaveDev/ColorWave/AudioProcessor.h; sourceTree = "<group>"; };
 		A3C852221FD893E00000324E /* ColorWave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorWave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C852251FD893E00000324E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3C852271FD893E00000324E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +69,8 @@
 		A3C8522C1FD893E00000324E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3C8522F1FD893E00000324E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3C852311FD893E00000324E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3F27BF91FDA3F88004A0984 /* CNNPredictGenre.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = CNNPredictGenre.mlmodel; path = ML/CNNPredictGenre.mlmodel; sourceTree = SOURCE_ROOT; };
+		A3F27BFB1FDA4F94004A0984 /* GenreColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreColorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,9 +102,36 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A3735E811FDA0D0800A00551 /* AudioDSPUtils */ = {
+			isa = PBXGroup;
+			children = (
+				A3735E891FDA0D2D00A00551 /* AudioFileReader.h */,
+				A3735E8E1FDA0D2D00A00551 /* AudioFileReader.m */,
+				A3735E841FDA0D2C00A00551 /* BufferedOverlapQueue.h */,
+				A3735E8B1FDA0D2D00A00551 /* BufferedOverlapQueue.m */,
+				A3735E901FDA0D2D00A00551 /* CircularBuffer.h */,
+				A3735E881FDA0D2D00A00551 /* CircularBuffer.m */,
+				A3735E8F1FDA0D2D00A00551 /* CubicSpline.h */,
+				A3735E8D1FDA0D2D00A00551 /* CubicSpline.m */,
+				A3735E931FDA0D2E00A00551 /* DataBufferBlock.h */,
+				A3735E831FDA0D2C00A00551 /* DataBufferBlock.m */,
+				A3735E8A1FDA0D2D00A00551 /* FFTHelper.h */,
+				A3735E911FDA0D2D00A00551 /* FFTHelper.m */,
+				A3735E921FDA0D2D00A00551 /* libmfcc.c */,
+				A3735E8C1FDA0D2D00A00551 /* libmfcc.h */,
+				A3735E861FDA0D2C00A00551 /* Novocaine.h */,
+				A3735E941FDA0D2E00A00551 /* Novocaine.m */,
+				A3735E851FDA0D2C00A00551 /* PeakFinder.h */,
+				A3735E871FDA0D2C00A00551 /* PeakFinder.m */,
+				A3735E821FDA0D2B00A00551 /* ColorWave-Bridging-Header.h */,
+			);
+			path = AudioDSPUtils;
+			sourceTree = "<group>";
+		};
 		A3C852191FD893E00000324E = {
 			isa = PBXGroup;
 			children = (
+				A3735E811FDA0D0800A00551 /* AudioDSPUtils */,
 				A3C852241FD893E00000324E /* ColorWave */,
 				A3C852231FD893E00000324E /* Products */,
 				7481E8CDFEA63E8E5D677FC2 /* Pods */,
@@ -88,8 +150,12 @@
 		A3C852241FD893E00000324E /* ColorWave */ = {
 			isa = PBXGroup;
 			children = (
+				A3F27BF91FDA3F88004A0984 /* CNNPredictGenre.mlmodel */,
+				A3735EA01FDA0DC700A00551 /* AudioProcessor.h */,
+				A3735E9E1FDA0DB000A00551 /* AudioProcessor.m */,
 				A3C852251FD893E00000324E /* AppDelegate.swift */,
 				A3C852271FD893E00000324E /* ViewController.swift */,
+				A3F27BFB1FDA4F94004A0984 /* GenreColorModel.swift */,
 				A32D5C921FD964A4008F41EA /* GenreCollectionViewCell.xib */,
 				A32D5C8C1FD928DC008F41EA /* GenreCollectionViewCell.swift */,
 				A3C852291FD893E00000324E /* Main.storyboard */,
@@ -138,6 +204,7 @@
 				TargetAttributes = {
 					A3C852211FD893E00000324E = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -248,10 +315,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3735E961FDA0D2E00A00551 /* PeakFinder.m in Sources */,
+				A3735E991FDA0D2E00A00551 /* CubicSpline.m in Sources */,
+				A3735E9B1FDA0D2E00A00551 /* FFTHelper.m in Sources */,
+				A3735E9F1FDA0DB000A00551 /* AudioProcessor.m in Sources */,
 				A3C852281FD893E00000324E /* ViewController.swift in Sources */,
+				A3735E971FDA0D2E00A00551 /* CircularBuffer.m in Sources */,
 				A3735E7F1FD9F39D00A00551 /* GenreConfigModalViewController.swift in Sources */,
+				A3735E9C1FDA0D2E00A00551 /* libmfcc.c in Sources */,
 				A3735E7C1FD9EA6700A00551 /* ColorCell.swift in Sources */,
+				A3735E951FDA0D2E00A00551 /* DataBufferBlock.m in Sources */,
+				A3F27BFA1FDA3F88004A0984 /* CNNPredictGenre.mlmodel in Sources */,
 				A32D5C8D1FD928DC008F41EA /* GenreCollectionViewCell.swift in Sources */,
+				A3735E9D1FDA0D2E00A00551 /* Novocaine.m in Sources */,
+				A3735E9A1FDA0D2E00A00551 /* AudioFileReader.m in Sources */,
+				A3735E981FDA0D2E00A00551 /* BufferedOverlapQueue.m in Sources */,
+				A3F27BFC1FDA4F94004A0984 /* GenreColorModel.swift in Sources */,
 				A3C852261FD893E00000324E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +469,7 @@
 			baseConfigurationReference = 7CEB73DF1A16C4877190390F /* Pods-ColorWave.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F69WJ27LN4;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -401,6 +481,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.smu.lyle.cse5323.lhansen.ColorWave;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AudioDSPUtils/ColorWave-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -411,6 +493,7 @@
 			baseConfigurationReference = 47F3F3D957B17B1B0FA5625D /* Pods-ColorWave.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F69WJ27LN4;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -422,6 +505,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.smu.lyle.cse5323.lhansen.ColorWave;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AudioDSPUtils/ColorWave-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -23,6 +23,7 @@ class GenreCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.genreLabel?.text = self.genreData.name
     }
     func initWithData(_ data:GenreData){
         self.genreData = data
@@ -35,6 +36,8 @@ class GenreCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
         self.colorCollection.dataSource = self
         //if you use xibs:
         self.colorCollection.register(UINib(nibName:"ColorCell", bundle: nil), forCellWithReuseIdentifier: colorCellIdentifier)
+        self.colorCollection.backgroundColor = UIColor.clear
+        self.colorCollection.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -46,20 +49,4 @@ class GenreCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
         cell.backgroundColor = Array(self.genreData.colors)[indexPath.row]
         return cell as UICollectionViewCell
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return genreData.colors.count
-//    }
-    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        //        genreData.colors.
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath)
-//        let btn = FABButton()
-//        btn.frame.size = CGSize(width: 20.0, height: 20.0)
-//        btn.isEnabled = false
-//        btn.backgroundColor = Array(self.genreData.colors)[indexPath.row]
-//        cell.addSubview(btn)
-//        return cell
-//    }
-    
 }
