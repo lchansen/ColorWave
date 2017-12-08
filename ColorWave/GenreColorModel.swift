@@ -25,6 +25,7 @@ class GenreColorModel {
     var palattes:Dictionary = [String:GenreData]()
     var colorOptions = Set<UIColor>()
     init(){
+        //Init with pre-determined colors
         colorOptions.insert(Color.amber.base)
         colorOptions.insert(Color.blue.base)
         colorOptions.insert(Color.cyan.base)
@@ -35,6 +36,9 @@ class GenreColorModel {
         colorOptions.insert(Color.red.darken1)
         colorOptions.insert(Color.deepOrange.base)
         colorOptions.insert(Color.white)
+        colorOptions.insert(Color.blueGrey.lighten1)
+        colorOptions.insert(Color.indigo.base)
+        colorOptions.insert(Color.teal.darken2)
         
         //Any
         var anyColors = Set<UIColor>()

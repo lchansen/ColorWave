@@ -35,21 +35,17 @@ import Alamofire
     public override func viewDidLoad() {
         super.viewDidLoad()
         audioObj.initialize(self as UIViewController)
-        
+        swiftyHue.enableLogging(true)
         palattes = Array(GenreColorModel.sharedInstance.palattes.values)
-        
-        self.predLabel.text = "Any"
-        
+        predLabel.text = "Any"
         genreCollectionView.delegate = self
         genreCollectionView.dataSource = self
         genreCollectionView.register(UINib(nibName: "GenreCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "GenreCollectionViewCell")
-//        genreCollectionView.reloadData()
         let topBorder = CALayer() //
         topBorder.frame = CGRect(x: 0.0, y: self.predLabel.layer.frame.bounds.maxY, width: self.view.frame.width, height: 1)
         topBorder.backgroundColor = UIColor.black.cgColor
-        self.predLabel.layer.addSublayer(topBorder)
-        
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient")!)
+        predLabel.layer.addSublayer(topBorder)
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient")!)
         runAudioBtn.backgroundColor = Color.blue.base
         runAudioBtn.pulseColor = .white
         runAudioBtn.titleColor = Color.white
@@ -63,11 +59,7 @@ import Alamofire
         
         if let set = GenreColorModel.sharedInstance.palattes[predLabel.text!]{
             activeColors = Array(set.colors)
-        } else {
-            print("handle tap broke!!!!!!!")
         }
-        
-        swiftyHue.enableLogging(true)
         
         if let _ = readBridgeAccessConfig() {
             print("found existing hue config")
@@ -80,6 +72,13 @@ import Alamofire
         }
     }
     
+    public override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+    //Fetch updates palattes from the sharedInstance
     func reloadPalattes(){
         palattes = Array(GenreColorModel.sharedInstance.palattes.values)
         genreCollectionView.reloadData()
@@ -111,6 +110,20 @@ import Alamofire
         return cell
     }
     
+    // MARK: - UIGestureRecognizerDelegate
+    //Single tap selects genre as the 'active' color palatte
+    @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
+        let senderView = sender?.view as! GenreCollectionViewCell
+        self.predLabel.text = senderView.genreData.name
+        if let set = GenreColorModel.sharedInstance.palattes[predLabel.text!]{
+            activeColors = Array(set.colors)
+        } else {
+            print("handle tap broke!!!!!!!")
+        }
+        
+    }
+    
+    //Double tap opens modal to edit the genre's color scheme
     @objc func handleDoubleTap(sender: UITapGestureRecognizer? = nil) {
         // handling code
         print("handled double tap")
@@ -125,74 +138,60 @@ import Alamofire
 
     }
     
-    @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
-        let senderView = sender?.view as! GenreCollectionViewCell
-        self.predLabel.text = senderView.genreData.name
-        if let set = GenreColorModel.sharedInstance.palattes[predLabel.text!]{
-            activeColors = Array(set.colors)
-        } else {
-            print("handle tap broke!!!!!!!")
-        }
-        
-    }
-    var activeBassIndex = 0
+    // MARK: - Light change/transition handlers (called from objective c)
+    
+    var activeBassIndex = 0 //keep changing a number so we cycle between colors
     @objc func stepColorBass(){
+        //there may still be pending transitions if the queue in objc is backed up
         if(!self.partyModeActive){
             return
         }
-        var usableLights = self.lights[0..<self.lights.count/2]
+        let usableLights = self.lights[0..<self.lights.count/2]
         let randomInt = Int(arc4random_uniform(UInt32(usableLights.count)))
-        print("bass")
-        print(randomInt)
         let randomLight = usableLights[randomInt]
+        
         var lightState = LightState()
         lightState.on = true;
         lightState.brightness = 254
         lightState.transitiontime = 0
-        print("predLabel")
-        print(predLabel.text!)
         let xy = HueUtilities.calculateXY(activeColors[activeBassIndex%activeColors.count], forModel: "LCT001")
         lightState.xy = [Float(xy.x), Float(xy.y)]
         activeBassIndex+=1
+        
         swiftyHue.bridgeSendAPI.updateLightStateForId(randomLight, withLightState: lightState){ (error) in
             print(error ?? "")
         }
     }
+    
     var activeMidIndex = 0
     @objc func stepColorMid(){
+        //there may still be pending transitions if the queue in objc is backed up
         if(!self.partyModeActive){
             return
         }
         let usableLights = self.lights[(self.lights.count/2)...]
         let randomInt = Int(arc4random_uniform(UInt32(usableLights.count)))
-        print("mid")
-        print(randomInt+(self.lights.count/2))
         let randomLight = usableLights[randomInt+(self.lights.count/2)]
+        
         var lightState = LightState()
         lightState.on = true;
         lightState.brightness = 254
-        lightState.transitiontime = 0
-        print("predLabel")
-        print(predLabel.text!)
+        lightState.transitiontime = 1
         let xy = HueUtilities.calculateXY(activeColors[activeMidIndex%activeColors.count], forModel: "LCT001")
         lightState.xy = [Float(xy.x), Float(xy.y)]
         activeMidIndex+=1
+        
         swiftyHue.bridgeSendAPI.updateLightStateForId(randomLight, withLightState: lightState){ (error) in
             print(error ?? "")
         }
     }
+    
     @objc func updatePrediction(genre:String){
         self.predLabel.text = genre;
-    }
-
-    public override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        //TODO: change current colors array
     }
     
     @IBAction func runAudioPressed(_ sender: Any) {
-        print("title")
-        print(self.runAudioBtn.title!)
         if(self.runAudioBtn.title! == "Run Audio"){
             self.partyModeActive = true
             self.runAudioBtn.title = "Stop Audio" as String?
@@ -201,14 +200,12 @@ import Alamofire
             self.partyModeActive = false
             self.runAudioBtn.title = "Run Audio"
             self.audioObj.stop()
-            
         } else {
-            print("idk lol")
+            print("idk fam")
         }
-        
     }
     
-    
+    //MARK - BridgeFinderDelegate, BridgeAuthenticatorDelegate
     public func bridgeFinder(_ finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
         guard let b = bridges.first else {
             return
@@ -220,7 +217,6 @@ import Alamofire
         bridgeAuthenticator = BridgeAuthenticator(bridge: bridge!, uniqueIdentifier: "swiftyhue#\(UIDevice.current.name)")
         bridgeAuthenticator?.delegate = self
         bridgeAuthenticator?.start()
-        
     }
     
     public func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
@@ -249,6 +245,40 @@ import Alamofire
         bridgeAuthenticator?.start()
     }
     
+    func readBridgeAccessConfig() -> BridgeAccessConfig? {
+        
+        let userDefaults = UserDefaults.standard
+        let bridgeAccessConfigJSON = userDefaults.object(forKey: bridgeAccessConfigUserDefaultsKey) as? JSON
+        var bridgeAccessConfig: BridgeAccessConfig?
+        if let bridgeAccessConfigJSON = bridgeAccessConfigJSON {
+            bridgeAccessConfig = BridgeAccessConfig(json: bridgeAccessConfigJSON)
+        }
+        return bridgeAccessConfig
+    }
+    
+    func writeBridgeAccessConfig(bridgeAccessConfig: BridgeAccessConfig) {
+        let userDefaults = UserDefaults.standard
+        let bridgeAccessConfigJSON = bridgeAccessConfig.toJSON()
+        userDefaults.set(bridgeAccessConfigJSON, forKey: bridgeAccessConfigUserDefaultsKey)
+    }
+    
+    func runConnect(){
+        let bac = self.readBridgeAccessConfig()!
+        swiftyHue.setBridgeAccessConfig(bac)
+        print("connected")
+        bridgeStatus.text = bac.ipAddress
+        refreshLights()
+        //        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .lights)
+        //        swiftyHue.startHeartbeat();
+        //
+        //        NotificationCenter.default.addObserver(self, selector: #selector(self.lightChanged), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.lightsUpdated.rawValue), object: nil)
+    }
+    
+    //    @objc public func lightChanged() {
+    //        //HeartBeat (when enabled), check to see if other apps have changed our light state
+    //        print("Changed")
+    //    }
+    
     func refreshLights() {
         swiftyHue.resourceAPI.fetchLights{
             (result: Result<[String:Light]>) in
@@ -260,7 +290,7 @@ import Alamofire
             }
         }
     }
-    @IBAction func runTest() {
+    func runTest() {
         var lightState = LightState()
         lightState.on = false;
         lightState.transitiontime = 0
@@ -268,7 +298,7 @@ import Alamofire
             print(errors ?? "")
         }
         
-        var when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+        var when = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: when) {
             var lightState = LightState()
             lightState.on = true;
@@ -277,7 +307,6 @@ import Alamofire
             let xy = HueUtilities.calculateXY(SwiftyHueColor.blue, forModel: "LCT001")
             lightState.xy = [Float(xy.x), Float(xy.y)]
             
-            
             self.swiftyHue.bridgeSendAPI.setLightStateForGroupWithId("0", withLightState: lightState) { (errors) in
                 if let err = errors{
                     print(err)
@@ -285,7 +314,7 @@ import Alamofire
             }
         }
         
-        when = DispatchTime.now() + 5 // change 2 to desired number of seconds
+        when = DispatchTime.now() + 4
         DispatchQueue.main.asyncAfter(deadline: when) {
             var lightState = LightState()
             lightState.on = true;
@@ -293,8 +322,7 @@ import Alamofire
             lightState.brightness = 254
             let xy = HueUtilities.calculateXY(SwiftyHueColor.white, forModel: "LCT001")
             lightState.xy = [Float(xy.x), Float(xy.y)]
-            
-            
+
             self.swiftyHue.bridgeSendAPI.setLightStateForGroupWithId("0", withLightState: lightState) { (errors) in
                 if let err = errors{
                     print(err)
@@ -303,6 +331,7 @@ import Alamofire
         }
     }
     
+    //MARK - Provide some usability features
     @IBAction func allOffPressed(_ sender: Any) {
         var lightState = LightState()
         lightState.on = false
@@ -326,50 +355,6 @@ import Alamofire
         }
     
     }
-}
-
-extension ViewController {
-    
-    func readBridgeAccessConfig() -> BridgeAccessConfig? {
-        
-        let userDefaults = UserDefaults.standard
-        let bridgeAccessConfigJSON = userDefaults.object(forKey: bridgeAccessConfigUserDefaultsKey) as? JSON
-        
-        var bridgeAccessConfig: BridgeAccessConfig?
-        if let bridgeAccessConfigJSON = bridgeAccessConfigJSON {
-            
-            bridgeAccessConfig = BridgeAccessConfig(json: bridgeAccessConfigJSON)
-        }
-        
-        return bridgeAccessConfig
-    }
-    
-    func writeBridgeAccessConfig(bridgeAccessConfig: BridgeAccessConfig) {
-        
-        let userDefaults = UserDefaults.standard
-        let bridgeAccessConfigJSON = bridgeAccessConfig.toJSON()
-        userDefaults.set(bridgeAccessConfigJSON, forKey: bridgeAccessConfigUserDefaultsKey)
-    }
-}
-
-extension ViewController {
-    
-    func runConnect(){
-        let bac = self.readBridgeAccessConfig()!
-        swiftyHue.setBridgeAccessConfig(bac)
-        print("connected")
-        bridgeStatus.text = bac.ipAddress
-        refreshLights()
-//        swiftyHue.setLocalHeartbeatInterval(10, forResourceType: .lights)
-//        swiftyHue.startHeartbeat();
-//        
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.lightChanged), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.lightsUpdated.rawValue), object: nil)
-    }
-    
-    @objc public func lightChanged() {
-        print("Changed")
-    }
-    
 }
 
 

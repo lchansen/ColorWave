@@ -15,7 +15,7 @@ class GenreConfigModalViewController: UIViewController, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: selectableColorCellIdentifier, for: indexPath) as! ColorCellSelectable
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: selectableColorCellIdentifier, for: indexPath) as! ColorCellSelectable
         let color = allColors[indexPath.row]
         cell.backgroundColor = color
         if(genreData.colors.contains(color)){

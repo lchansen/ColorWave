@@ -12,6 +12,7 @@
 #define AudioProcessor_h
 @interface AudioProcessor : NSObject
 
+//Pass it the VC to we can trigger light changes and pass back ML predictions
 - (void)initialize:(UIViewController*) vc;
 - (void)start;
 - (void)stop;

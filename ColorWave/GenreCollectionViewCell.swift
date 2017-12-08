@@ -31,10 +31,8 @@ class GenreCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         self.colorCollection.delegate = self
         self.colorCollection.dataSource = self
-        //if you use xibs:
         self.colorCollection.register(UINib(nibName:"ColorCell", bundle: nil), forCellWithReuseIdentifier: colorCellIdentifier)
         self.colorCollection.backgroundColor = UIColor.clear
         self.colorCollection.reloadData()

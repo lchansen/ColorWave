@@ -177,11 +177,10 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OH-lC-DwO">
                                         <rect key="frame" x="0.0" y="17" width="225" height="23"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.99113315343856812" green="0.243599534034729" blue="0.0095879826694726944" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.78572044542857578" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="1OH-lC-DwO" secondAttribute="trailing" id="Dvy-2v-FRZ"/>
                                     <constraint firstItem="CyX-Ux-3UJ" firstAttribute="bottom" secondItem="rB0-pk-bch" secondAttribute="bottomMargin" id="SwY-p2-sf4"/>

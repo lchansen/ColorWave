@@ -184,7 +184,6 @@
             }
         }
         if(isLargest){
-            // LUKE ADD COLOR CHANGE HERE!!!!!!!
             //NSLog(@"Total: %f", bassTotal);
             //NSLog(@"Change Bass Lights!");
             [self.masterVC stepColorBass];
