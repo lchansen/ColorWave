@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Charts
 import Material
 import SwiftyHue
 import Gloss
@@ -26,7 +25,6 @@ import Alamofire
     @IBOutlet weak var numLightsLabel: UILabel!
     @IBOutlet weak var genreCollectionView: UICollectionView!
     @IBOutlet weak var runAudioBtn: RaisedButton!
-    var activeColorIndex = 0
     @IBOutlet weak var predLabel: UILabel!
     var partyModeActive:Bool = false
     @IBOutlet weak var allOffButton: RaisedButton!
@@ -36,6 +34,14 @@ import Alamofire
     
     
     public override func viewDidLoad() {
+        let arr = [0,1,2,3,4]
+        print(arr[0..<arr.count/2])
+        print(arr[(arr.count/2)...])
+        print(Int(arc4random_uniform(UInt32(3))))
+        print(Int(arc4random_uniform(UInt32(3))))
+        print(Int(arc4random_uniform(UInt32(3))))
+        print(Int(arc4random_uniform(UInt32(3))))
+        print(Int(arc4random_uniform(UInt32(3))))
         super.viewDidLoad()
         audioObj.initialize(self as UIViewController)
         
@@ -63,6 +69,12 @@ import Alamofire
         allOnButton.titleColor = Color.white
         allOffButton.backgroundColor = Color.blue.base
         allOnButton.backgroundColor = Color.blue.base
+        
+        if let set = GenreColorModel.sharedInstance.palattes[predLabel.text!]{
+            activeColors = Array(set.colors)
+        } else {
+            print("handle tap broke!!!!!!!")
+        }
         
         swiftyHue.enableLogging(true)
         
@@ -132,24 +144,51 @@ import Alamofire
         }
         
     }
+    var activeBassIndex = 0
     @objc func stepColorBass(){
         if(!self.partyModeActive){
             return
         }
+        var usableLights = self.lights[0..<self.lights.count/2]
+        let randomInt = Int(arc4random_uniform(UInt32(usableLights.count)))
+        print("bass")
+        print(randomInt)
+        let randomLight = usableLights[randomInt]
         var lightState = LightState()
         lightState.on = true;
         lightState.brightness = 254
         lightState.transitiontime = 0
         print("predLabel")
         print(predLabel.text!)
-        let xy = HueUtilities.calculateXY(activeColors[activeColorIndex%activeColors.count], forModel: "LCT001")
+        let xy = HueUtilities.calculateXY(activeColors[activeBassIndex%activeColors.count], forModel: "LCT001")
         lightState.xy = [Float(xy.x), Float(xy.y)]
-        activeColorIndex+=1
-        swiftyHue.bridgeSendAPI.setLightStateForGroupWithId("0", withLightState: lightState) { (errors) in
-            print(errors ?? "")
+        activeBassIndex+=1
+        swiftyHue.bridgeSendAPI.updateLightStateForId(randomLight, withLightState: lightState){ (error) in
+            print(error ?? "")
         }
-        
-        
+    }
+    var activeMidIndex = 0
+    @objc func stepColorMid(){
+        if(!self.partyModeActive){
+            return
+        }
+        let usableLights = self.lights[(self.lights.count/2)...]
+        let randomInt = Int(arc4random_uniform(UInt32(usableLights.count)))
+        print("mid")
+        print(randomInt+(self.lights.count/2))
+        let randomLight = usableLights[randomInt+(self.lights.count/2)]
+        var lightState = LightState()
+        lightState.on = true;
+        lightState.brightness = 254
+        lightState.transitiontime = 0
+        print("predLabel")
+        print(predLabel.text!)
+        let xy = HueUtilities.calculateXY(activeColors[activeMidIndex%activeColors.count], forModel: "LCT001")
+        lightState.xy = [Float(xy.x), Float(xy.y)]
+        activeMidIndex+=1
+        swiftyHue.bridgeSendAPI.updateLightStateForId(randomLight, withLightState: lightState){ (error) in
+            print(error ?? "")
+        }
     }
     @objc func updatePrediction(genre:String){
         self.predLabel.text = genre;

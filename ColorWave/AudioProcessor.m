@@ -118,17 +118,7 @@
     
     return _fftHelper;
 }
-/*
-- (void)setUpdateBlock:(void(^)(void))updateBlock{
-    _updateData = updateBlock;
-}
 
-- (void)setArrays:(float*)fftArr mfccArr:(float* )mfccArr{
-    self.fftPointer = fftArr;
-    
-    self.mfccPointer = mfccArr;
-}
-*/
 -(void)initialize: (UIViewController*) vc{
     self.midTimeChange = 0;
     self.masterVC = (ViewController*) vc;
@@ -148,12 +138,6 @@
                                    selector:@selector(takeFFT)
                                    userInfo:nil
                                     repeats:YES];
-    
-    /*[NSTimer scheduledTimerWithTimeInterval:0.33
-                                     target:self
-                                   selector:@selector(calcMFCC)
-                                   userInfo:nil
-                                    repeats:YES];*/
 }
 - (void)stop{
     NSLog(@"STOPPING");
@@ -172,7 +156,7 @@
                    andCopydBMagnitudeToBuffer:fftMagnitude];
     
     int bassIndex1 = ceil(60/(self.audioManager.samplingRate/(BUFFER_SIZE)));
-    int bassIndex2 = floor(200/(self.audioManager.samplingRate/(BUFFER_SIZE)));
+    int bassIndex2 = ceil(250/(self.audioManager.samplingRate/(BUFFER_SIZE)));
     
     float bassTotal = 0;
     for(int i = bassIndex1; i < bassIndex2; i++){
@@ -184,10 +168,10 @@
     [self insertToBass:bassTotal];
     if(bassTotal > self.bassMagAvg){
         bool isLargest = true;
-        int rangeLen = 0.3/TIME_INTERVAL;
+        int rangeLen = 0.2/TIME_INTERVAL;
         for(int i = 1; i <= rangeLen; i++){
             if(self.circleIndex-i < 0){
-                if(self.fftBassCircle[(int)(2.0/TIME_INTERVAL) - abs(self.circleIndex-i)]*1.5 > bassTotal){
+                if(self.fftBassCircle[(int)(2.0/TIME_INTERVAL) - abs(self.circleIndex-i)] > bassTotal){
                     isLargest = false;
                     break;
                 }
@@ -203,6 +187,7 @@
             // LUKE ADD COLOR CHANGE HERE!!!!!!!
             //NSLog(@"Total: %f", bassTotal);
             //NSLog(@"Change Bass Lights!");
+            [self.masterVC stepColorBass];
         }
     }
     
@@ -223,6 +208,7 @@
         if(self.midTimeChange > (0.25/TIME_INTERVAL)){
             self.maxMidIndex = maxIndex;
             NSLog(@"Mid changed");
+            [self.masterVC stepColorMid];
             self.midTimeChange = 0;
         }
     }
