@@ -38,6 +38,7 @@ class GenreConfigModalViewController: UIViewController, UICollectionViewDelegate
         }
         gcm.palattes[genreData.name] = genreData
         collectionView.reloadData()
+        self.mainVC.reloadPalattes()
         
     }
     
@@ -53,6 +54,7 @@ class GenreConfigModalViewController: UIViewController, UICollectionViewDelegate
     let selectableColorCellIdentifier = "scci"
     var gcm = GenreColorModel.sharedInstance
     var allColors = Array<UIColor>()
+    var mainVC = ViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,9 +82,10 @@ class GenreConfigModalViewController: UIViewController, UICollectionViewDelegate
         self.view.removeFromSuperview()
     }
     
-    func setGenreData(gd:GenreData){
+    func setGenreData(gd:GenreData, vc:ViewController){
         self.genreData = gd
         self.genreLabel?.text = self.genreData.name
+        self.mainVC = vc;
     }
     
     

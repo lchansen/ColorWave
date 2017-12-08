@@ -24,7 +24,6 @@ import Alamofire
     var bridge:HueBridge? = nil
     var lights = Array<String>()
     @IBOutlet weak var numLightsLabel: UILabel!
-    @IBOutlet weak var runTestButton: Button!
     @IBOutlet weak var genreCollectionView: UICollectionView!
     @IBOutlet weak var runAudioBtn: RaisedButton!
     var activeColorIndex = 0
@@ -54,11 +53,8 @@ import Alamofire
         self.predLabel.layer.addSublayer(topBorder)
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient")!)
-        runTestButton.backgroundColor = Color.blue.base
-        runTestButton.pulseColor = .white
         runAudioBtn.backgroundColor = Color.blue.base
         runAudioBtn.pulseColor = .white
-        runTestButton.titleColor = Color.white
         runAudioBtn.titleColor = Color.white
         runAudioBtn.title = "Run Audio"
         allOffButton.pulseColor = .white
@@ -122,7 +118,7 @@ import Alamofire
         popOverVC.view.frame = self.view.frame
         self.view.addSubview(popOverVC.view)
         popOverVC.didMove(toParentViewController: self)
-        popOverVC.setGenreData(gd: senderView.genreData)
+        popOverVC.setGenreData(gd: senderView.genreData, vc: self)
 
     }
     
